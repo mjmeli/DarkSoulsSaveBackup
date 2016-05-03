@@ -31,6 +31,10 @@ namespace DarkSoulsSaveBackup
             set { saveFiles = value; }
         }
 
+        /// <summary>
+        /// When SaveLoc is instantiated, set it to point to the default save location, and if that is
+        /// a valid location, populate the save file list.
+        /// </summary>
         public SaveLoc()
         {
             this.getDefSaveLocation();
@@ -41,11 +45,14 @@ namespace DarkSoulsSaveBackup
             }
         }
 
-        // gets the default save location
-        // checks to see if the default location exists and picks it, otherwise will set validPath to false
+        /// <summary>
+        /// Gets the default save location on the system. This attempts to find the folder for the **latest** Dark
+        /// Souls game. In other words, it will look in the order DS3 -> DS2 -> DS1. If no default save locations
+        /// exist, returns error.
+        /// </summary>
         private void getDefSaveLocation()
         {
-            this.folderPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\DarkSoulsII";
+            this.folderPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\DarkSoulsIII";
             this.validLoc = false;
 
             // verify the default path exists

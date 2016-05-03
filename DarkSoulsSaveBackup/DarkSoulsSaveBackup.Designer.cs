@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DarkSoulsSaveBackup));
             this.headline = new System.Windows.Forms.Label();
             this.tbSaveLoc = new System.Windows.Forms.TextBox();
             this.saveLocBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -70,10 +69,10 @@
             this.headline.AutoSize = true;
             this.headline.Location = new System.Drawing.Point(13, 13);
             this.headline.Name = "headline";
-            this.headline.Size = new System.Drawing.Size(501, 13);
+            this.headline.Size = new System.Drawing.Size(492, 13);
             this.headline.TabIndex = 0;
-            this.headline.Text = "Welcome to the Dark Souls II Save Backup Program. Please configure as desired. Cl" +
-    "ick Activate to start!";
+            this.headline.Text = "Welcome to the Dark Souls Save Backup Program. Please configure as desired. Click" +
+    " Activate to start!";
             // 
             // tbSaveLoc
             // 
@@ -240,11 +239,11 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Enabled = false;
-            this.label3.Location = new System.Drawing.Point(560, 470);
+            this.label3.Location = new System.Drawing.Point(577, 470);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(49, 13);
+            this.label3.Size = new System.Drawing.Size(28, 13);
             this.label3.TabIndex = 18;
-            this.label3.Text = "meli v1.0";
+            this.label3.Text = "v2.0";
             // 
             // bOpenBU
             // 
@@ -335,7 +334,7 @@
             this.bBUNow.UseVisualStyleBackColor = true;
             this.bBUNow.Click += new System.EventHandler(this.bBUNow_Click);
             // 
-            // DS2SaveBackup
+            // DarkSoulsSaveBackup
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -366,9 +365,8 @@
             this.Controls.Add(this.lbSaveLoc);
             this.Controls.Add(this.tbSaveLoc);
             this.Controls.Add(this.headline);
-            //this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "DS2SaveBackup";
-            this.Text = "Dark Souls II Save Backup";
+            this.Name = "DarkSoulsSaveBackup";
+            this.Text = "Dark Souls Save Backup";
             this.Shown += new System.EventHandler(this.DS2SB_OnShow);
             ((System.ComponentModel.ISupportInitialize)(this.saveLocBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.udFreq)).EndInit();
