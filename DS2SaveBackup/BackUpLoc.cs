@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DarkSoulsSaveBackup
+namespace DS2SaveBackup
 {
     class BackUpLoc
     {
@@ -30,9 +30,17 @@ namespace DarkSoulsSaveBackup
         }
 
         // constructor adds \Backups to the end of the specified string pathname
-        public BackUpLoc(string s)
+        // if b is false, will not add \Backups (use if taken from settings)
+        public BackUpLoc(string s, bool b)
         {
-            folderPath = s + @"\Backups";
+            if (b)
+            {
+                folderPath = s + @"\Backups";
+            }
+            else
+            {
+                folderPath = s;
+            }
             this.populateBUs();
         }
 
@@ -79,7 +87,7 @@ namespace DarkSoulsSaveBackup
                 save.LastBU = Int32.MinValue;
                 foreach (string str in files)
                 {
-                    if (str.Contains(save.FileName))
+                    if (str.ToUpper().Contains(save.FileName.ToUpper()))
                     {
                         save.BackupCount++;
 

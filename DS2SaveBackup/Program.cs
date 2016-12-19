@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace DarkSoulsSaveBackup
+namespace DS2SaveBackup
 {
     static class Program
     {
@@ -16,7 +16,7 @@ namespace DarkSoulsSaveBackup
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new DarkSoulsSaveBackup());
+            Application.Run(new DS2SaveBackup());
         }
     }
 }

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace DarkSoulsSaveBackup
+namespace DS2SaveBackup
 {
     class SaveLoc
     {
@@ -31,13 +31,20 @@ namespace DarkSoulsSaveBackup
             set { saveFiles = value; }
         }
 
-        /// <summary>
-        /// When SaveLoc is instantiated, set it to point to the default save location, and if that is
-        /// a valid location, populate the save file list.
-        /// </summary>
         public SaveLoc()
         {
-            this.getDefSaveLocation();
+            if (Properties.Settings.Default.saveDir == "" || Properties.Settings.Default.saveDir == @"C:\Users\Michael\AppData\Roaming\DarkSoulsII\0110000103c637eb")
+            {
+                this.getDefSaveLocation();
+            }
+            else
+            {
+                validatePath(Properties.Settings.Default.saveDir);
+                if (validLoc)
+                {
+                    folderPath = Properties.Settings.Default.saveDir;
+                }
+            }
 
             if (validLoc)
             {
@@ -45,14 +52,11 @@ namespace DarkSoulsSaveBackup
             }
         }
 
-        /// <summary>
-        /// Gets the default save location on the system. This attempts to find the folder for the **latest** Dark
-        /// Souls game. In other words, it will look in the order DS3 -> DS2 -> DS1. If no default save locations
-        /// exist, returns error.
-        /// </summary>
+        // gets the default save location
+        // checks to see if the default location exists and picks it, otherwise will set validPath to false
         private void getDefSaveLocation()
         {
-            this.folderPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\DarkSoulsIII";
+            this.folderPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\DarkSoulsII";
             this.validLoc = false;
 
             // verify the default path exists
@@ -97,6 +101,8 @@ namespace DarkSoulsSaveBackup
             if (files.Length > 0)
             {
                 validLoc = true;
+                Properties.Settings.Default.saveDir = folderPath;
+                Properties.Settings.Default.Save();
             }
         }
 
@@ -111,6 +117,8 @@ namespace DarkSoulsSaveBackup
             {
                 validLoc = false;
                 MessageBox.Show("No save files could be found in that directory. Try again.", "No Save Files");
+                Properties.Settings.Default.saveDir = "";
+                Properties.Settings.Default.Save();
             }
             else
             {
@@ -134,6 +142,8 @@ namespace DarkSoulsSaveBackup
                 if (files.Length == 0)
                 {
                     MessageBox.Show("No save files could be found in that directory. Try again.", "No Save Files");
+                    Properties.Settings.Default.saveDir = "";
+                    Properties.Settings.Default.Save();
                     return false;
                 }
                 else
